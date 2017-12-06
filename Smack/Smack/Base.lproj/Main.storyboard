@@ -475,7 +475,7 @@
                         <outlet property="emailTxt" destination="ffG-Lh-8dw" id="5g5-cd-JTQ"/>
                         <outlet property="passTxt" destination="22p-a1-Y03" id="xpR-Sp-Ww6"/>
                         <outlet property="userImg" destination="Sjt-d2-AAb" id="leL-uA-7Rn"/>
-                        <outlet property="usernameTxt" destination="ZmQ-hc-Aa7" id="uMh-tM-cJd"/>
+                        <outlet property="usernameTxt" destination="gyq-BY-Ef4" id="4U6-Y7-cvS"/>
                         <segue destination="dAT-bt-nqf" kind="unwind" identifier="UnwindToChannel" unwindAction="prepareForUnwindWithSegue:" id="Rja-8x-W94"/>
                     </connections>
                 </viewController>
