@@ -36,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18" y="28"/>
+            <point key="canvasLocation" x="-866" y="32"/>
         </scene>
         <!--ChatVC-->
         <scene sceneID="3Qd-Be-49F">
@@ -74,7 +74,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.54380875825881958" green="0.70041185617446899" blue="0.91452056169509888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.35686274509999999" green="0.62352941179999999" blue="0.79607843140000001" alpha="0.51918343321917804" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="leading" secondItem="5bv-Aw-0Bc" secondAttribute="leading" id="0C7-tj-s9C"/>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="trailing" secondItem="5bv-Aw-0Bc" secondAttribute="trailing" id="Lny-lb-5V5"/>
@@ -122,7 +123,7 @@
                                     <action selector="loginBtnPressed:" destination="aN9-Qo-oEM" eventType="touchUpInside" id="cGl-b8-Hhz"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuProfileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-EQ-q1T">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuProfileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3lZ-EQ-q1T" customClass="CircleImage" customModule="Smack" customModuleProvider="target">
                                 <rect key="frame" x="12" y="572" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="SZR-3s-1Tx"/>
@@ -416,7 +417,7 @@
                                 <color key="textColor" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Sjt-d2-AAb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Sjt-d2-AAb" customClass="CircleImage" customModule="Smack" customModuleProvider="target">
                                 <rect key="frame" x="137.5" y="299" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="0A7-jz-hAF"/>
@@ -450,6 +451,10 @@
                                     <action selector="pickBGColorPressed:" destination="WXi-0D-QAb" eventType="touchUpInside" id="RuS-KY-GUG"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LZZ-PJ-yby">
+                                <rect key="frame" x="169" y="215" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.3294117647" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -460,10 +465,12 @@
                             <constraint firstItem="UBV-KJ-1AB" firstAttribute="trailing" secondItem="jsB-HZ-xaY" secondAttribute="trailing" constant="10" id="Iyg-ny-fs3"/>
                             <constraint firstItem="rU9-7N-CkB" firstAttribute="centerX" secondItem="meU-Dp-zd1" secondAttribute="centerX" id="JRD-Gc-o9T"/>
                             <constraint firstItem="Sjt-d2-AAb" firstAttribute="top" secondItem="Pfw-ud-r0m" secondAttribute="bottom" constant="40" id="LMH-J2-F5t"/>
+                            <constraint firstItem="LZZ-PJ-yby" firstAttribute="centerX" secondItem="meU-Dp-zd1" secondAttribute="centerX" id="RLS-OS-9em"/>
                             <constraint firstItem="NYv-6c-53e" firstAttribute="top" secondItem="Sjt-d2-AAb" secondAttribute="top" id="U8T-jS-Yab"/>
                             <constraint firstItem="NYv-6c-53e" firstAttribute="width" secondItem="Sjt-d2-AAb" secondAttribute="width" id="UF9-qb-8s1"/>
                             <constraint firstItem="Pfw-ud-r0m" firstAttribute="top" secondItem="ZmQ-hc-Aa7" secondAttribute="bottom" constant="40" id="UY4-Pp-by7"/>
                             <constraint firstItem="UBV-KJ-1AB" firstAttribute="bottom" secondItem="rU9-7N-CkB" secondAttribute="bottom" constant="20" id="Wog-lh-gSK"/>
+                            <constraint firstItem="LZZ-PJ-yby" firstAttribute="centerY" secondItem="meU-Dp-zd1" secondAttribute="centerY" constant="-100" id="YPo-kd-qS8"/>
                             <constraint firstItem="fwF-EZ-G6N" firstAttribute="centerX" secondItem="meU-Dp-zd1" secondAttribute="centerX" id="eXP-KU-5OD"/>
                             <constraint firstItem="ZmQ-hc-Aa7" firstAttribute="centerX" secondItem="meU-Dp-zd1" secondAttribute="centerX" id="gOg-ZC-v8h"/>
                             <constraint firstItem="NYv-6c-53e" firstAttribute="centerX" secondItem="meU-Dp-zd1" secondAttribute="centerX" id="kKH-Gk-oQT"/>
@@ -474,6 +481,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="ffG-Lh-8dw" id="5g5-cd-JTQ"/>
                         <outlet property="passTxt" destination="22p-a1-Y03" id="xpR-Sp-Ww6"/>
+                        <outlet property="spinner" destination="LZZ-PJ-yby" id="RLo-BB-IWg"/>
                         <outlet property="userImg" destination="Sjt-d2-AAb" id="leL-uA-7Rn"/>
                         <outlet property="usernameTxt" destination="gyq-BY-Ef4" id="4U6-Y7-cvS"/>
                         <segue destination="dAT-bt-nqf" kind="unwind" identifier="UnwindToChannel" unwindAction="prepareForUnwindWithSegue:" id="Rja-8x-W94"/>
@@ -588,6 +596,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TT9-rR-jVw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-866" y="32"/>
         </scene>
     </scenes>
     <resources>
