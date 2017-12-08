@@ -39,6 +39,7 @@ class CreateAccountVC: UIViewController {
             userImg.backgroundColor = UIColor.lightGray
         }
     }
+    
     @IBAction func createAccntPressed(_ sender: Any) {
         spinner.isHidden = false
         spinner.startAnimating()
