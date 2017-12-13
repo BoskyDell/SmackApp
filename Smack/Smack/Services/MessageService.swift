@@ -42,7 +42,7 @@ class MessageService {
                     debugPrint(error as Any)
                 }
                 
-                print("MessageService \(self.channels[0].channelTitle)")
+                // print("MessageService \(self.channels[0].channelTitle)")
                 
             } else {
                 completion(false)
