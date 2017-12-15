@@ -48,21 +48,30 @@ class CreateAccountVC: UIViewController {
         guard let name  = usernameTxt.text,  usernameTxt.text != "" else { return }
         guard let pass  = passTxt.text ,     passTxt.text     != "" else { return }
         
+        print("CreateAccountVC AuthService:CreateUser: Attempting RegisterUser\n")
         AuthService.instance.registerUser(email: email, password: pass) { (success) in
             if success {
+                print("CreateAccountVC AuthService:CreateUser: Attempting LoginUser\n")
                 AuthService.instance.loginUser(email: email, password: pass, completion: { (success) in
                     if success {
+                        print("CreateAccountVC AuthService:CreateUser: Attempting CreateUser\n")
                         AuthService.instance.createUser(name: name, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
                             if success {
+                                print("CreateAccountVC AuthService:CreateUser: GOOD!\n")
                                 self.spinner.isHidden = true
                                 self.spinner.stopAnimating()
                                 self.performSegue(withIdentifier: UNWIND, sender: nil)
                                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                            } else {
+                                print("CreateAccountVC AuthService:CreateUser:failed\n")
                             }
                         })
+                    } else {
+                    print("CreateAccountVC AuthService:LoginUser:failed\n")
                     }
-                    
                 })
+            } else {
+                print("CreateAccountVC AuthService:RegisterUser:failed\n")
             }
         }
     }

@@ -55,11 +55,15 @@ class AuthService {
             "password": password
         ]
         
+        print("START AuthService:RegisterUser:Alamofire: Register User \(lowerCaseEmail)\n")
+        
         Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseString { (response) in
             if response.result.error == nil {
+                print("AuthService:RegisterUser:Alamofire: Registered User \(lowerCaseEmail)\n")
                 completion(true)
             } else {
                 completion(false)
+                print("FAILED AuthService:RegisterUser:Alamofire: Registered User \(lowerCaseEmail)\n")
                 debugPrint(response.result.error as Any)
             }
         }
@@ -75,6 +79,8 @@ class AuthService {
             "email": lowerCaseEmail,
             "password": password
         ]
+    
+        print("START AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail)\n")
         
         Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             
@@ -89,28 +95,38 @@ class AuthService {
 //                        self.authToken = token
 //                    }
 //                }
-
-                // Sifty JSON method
-                guard let data = response.data else { return }
                 
+
+                // Swifty JSON method
+                guard let data = response.data else {
+                    print("AlamoFire AuthService:LoginUser:AlamofireRequest: Could not Parse response Data \n")
+                    return
+                }
+
                 do {
 
                     let json = try JSON(data: data)
-                    
+
                     self.userEmail = json["user"].stringValue
                     self.authToken = json["token"].stringValue
-                
+
                     self.isLoggedIn = true
+                    print("AlamoFire AuthService:LoginUser:AlamofireRequest: login User \(email) Success\n")
+
                     completion(true)
                 } catch let error as NSError {
+                    print("Failed AlamoFire AuthService:LoginUser:AlamofireRequest: login User \(email) \n")
+
                     completion(false)
                     debugPrint(error as Any)
                 }
             } else {
+                print("FAILED AlamoFire AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail)\n")
                 completion(false)
                 debugPrint(response.result.error as Any)
             }
         }
+        print("Completed AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail)\n")
     }
     
     func createUser( name: String, email : String, avatarName: String, avatarColor: String, completion: @escaping CompletionHandler ) {
@@ -127,11 +143,14 @@ class AuthService {
         Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
-                guard let data = response.data else {return}
+                guard let data = response.data else {
+                    print("AuthService:CreateUser:Alamofire.Request could not get response Data\n")
+                    return}
                 completion (self.setUserInfo(data: data))
                 
             } else {
                 completion(false)
+                print("AuthService:CreateUser:Alamofire.Request result error not NIL\n")
                 debugPrint(response.result.error as Any)
             }
         }

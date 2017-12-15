@@ -23,19 +23,19 @@ class MessageService {
                 guard let data = response.data else {return}
                 
                 do {
-//                    Swift 3 style
-//                    if let json = try JSON(data:data).array {
-//                        for item in json {
-//                            let name = item["name"].stringValue
-//                            let channelDescription = item["description"].stringValue
-//                            let id = item["_id"].stringValue
-//                            let channel = Channel(id: id, channelTitle: name, channelDescription: channelDescription)
-//                            self.channels.append(channel)
-//                        }
-//                    }
+                    // Swift 3 style
+                    if let json = try JSON(data:data).array {
+                        for item in json {
+                            let name = item["name"].stringValue
+                            let channelDescription = item["description"].stringValue
+                            let id = item["_id"].stringValue
+                            let channel = Channel(id: id, channelTitle: name, channelDescription: channelDescription)
+                            self.channels.append(channel)
+                        }
+                    }
                     
                     // Swift 4 style
-                    self.channels = try JSONDecoder().decode([Channel].self, from: data)
+                    //  self.channels = try JSONDecoder().decode([Channel].self, from: data)
                     
                 } catch let error {
                     completion(false)
