@@ -28,10 +28,13 @@ class AuthService {
     
     var authToken: String {
         get {
+            var tokenString : String = defaults.value(forKey: TOKEN_KEY) as! String
+            print("AuthService:GETAuthToken:Key\(TOKEN_KEY) Value\(tokenString)")
             return defaults.value(forKey: TOKEN_KEY) as! String
         }
-        
+
         set {
+            print("AuthService:SetAuthToken:Key\(TOKEN_KEY) Value(\newValue)")
             defaults.set(newValue, forKey: TOKEN_KEY)
         }
     }
@@ -80,7 +83,7 @@ class AuthService {
             "password": password
         ]
     
-        print("START AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail)\n")
+        print("START AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail) LoginURL \(URL_LOGIN) Header\(HEADER) \n")
         
         Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             
@@ -111,17 +114,17 @@ class AuthService {
                     self.authToken = json["token"].stringValue
 
                     self.isLoggedIn = true
-                    print("AlamoFire AuthService:LoginUser:AlamofireRequest: login User \(email) Success\n")
+                    print("AlamoFire AuthService:LoginUser:AlamofireRequest: login User \(self.userEmail) Token \(self.authToken) Success\n")
 
                     completion(true)
                 } catch let error as NSError {
-                    print("Failed AlamoFire AuthService:LoginUser:AlamofireRequest: login User \(email) \n")
+                    print("Failed AlamoFire AuthService:LoginUser:AlamofireRequest: login User \(self.userEmail) ToKen \(self.authToken)\n")
 
                     completion(false)
                     debugPrint(error as Any)
                 }
             } else {
-                print("FAILED AlamoFire AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail)\n")
+                print("FAILED AlamoFire AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail) ResultError is not NIL!\n")
                 completion(false)
                 debugPrint(response.result.error as Any)
             }
@@ -140,6 +143,9 @@ class AuthService {
             "avatarName"  : avatarName
         ]
         
+        print("AuthService:CreateUser:Alamofire.Request URL\(URL_USER_ADD) Header\(BEARER_HEADER) AuthToken\(AuthService.instance.authToken) \n")
+        
+        
         Alamofire.request(URL_USER_ADD, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
@@ -156,14 +162,21 @@ class AuthService {
         }
     }
     
+    
     func findUserByEmail(completion: @escaping CompletionHandler) {
+        
+        print("AuthService:FindUserEmail:Alamofire.Request URL\(URL_USER_BY_EMAIL)\(userEmail) Header\(BEARER_HEADER) AuthToken\(AuthService.instance.authToken) \n")
         
         Alamofire.request("\(URL_USER_BY_EMAIL)\(userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
-                guard let data = response.data else {return}
+                guard let data = response.data else {
+                    print("AuthService:FindUserEmail:Alamofire.Request URL\(URL_USER_BY_EMAIL)\(self.userEmail) could not parse response.data\n")
+                    return
+                }
                 completion (self.setUserInfo(data: data))
             } else {
+                print("AuthService:FindUserEmail:Alamofire.Request URL\(URL_USER_BY_EMAIL)\(self.userEmail) ResponseResultError not NIL FAILED!\n")
                 completion(false)
                 debugPrint(response.result.error as Any)
             }

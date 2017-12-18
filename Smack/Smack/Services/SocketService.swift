@@ -18,8 +18,8 @@ class SocketService: NSObject {
         super.init()
     }
     
-    let manager = SocketManager(socketURL: URL(string: BASE_URL)!)
-    lazy var socket  = manager.defaultSocket
+    let manager     = SocketManager(socketURL: URL(string: BASE_URL)!)
+    lazy var socket = manager.defaultSocket
     
   //  let socket : SocketIOClient = SocketIOClient(socketUrl: URL(string: BASE_URL)!)
     
@@ -38,21 +38,15 @@ class SocketService: NSObject {
     
     func getChannel(completion: @escaping CompletionHandler) {
         socket.on("channelCreated") { (dataArray, ack) in
+            
             guard let channelName = dataArray[0] as? String else { return }
             guard let channelDescription = dataArray[1] as? String else { return }
             guard let channelId = dataArray[2] as? String else { return }
             
-            // let newChannel = Channel(id: channelId, channelTitle: channelName, channelDescription: channelDescription, __v: nil)
             let newChannel = Channel(id: channelId, channelTitle: channelName, channelDescription: channelDescription)
             MessageService.instance.channels.append(newChannel)
             completion(true)
-        
         }
     }
-    
-    
-    
-    
-    
     
 }

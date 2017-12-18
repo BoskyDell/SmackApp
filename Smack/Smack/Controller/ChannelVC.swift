@@ -16,13 +16,19 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     override func viewDidLoad() {
+        print("ChannelVC:ViewDidLoad: Entered")
         super.viewDidLoad()
         tableView.delegate   = self
         tableView.dataSource = self
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60
-    
+        
+        print("ChannelVC:ViewDidLoad:AddObserver for UserDidChange")
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         
+        print("ChannelVC:ViewDidLoad:AddObserver for ChannelsLoaded")
+        NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.channelsLoaded(_:)), name: NOTIF_CHANNELS_LOADED, object: nil)
+        
+        print("ChannelVC:ViewDidLoad: Get Channel from SocketService")
         SocketService.instance.getChannel { (success) in
             if success {
                 self.tableView.reloadData()
@@ -31,10 +37,12 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("ChannelVC:ViewDidAppear: Entered")
         setupUserInfo()
     }
     
     func setupUserInfo () {
+        print("ChannelVC:SetupUserInfo: Entered")
         if AuthService.instance.isLoggedIn {
             loginBtn.setTitle(UserDataService.instance.name, for: .normal)
             userImg.image = UIImage(named: UserDataService.instance.avatarName)
@@ -43,11 +51,17 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             loginBtn.setTitle("Login", for: .normal)
             userImg.image = UIImage(named: "menuProfileIcon")
             userImg.backgroundColor = UIColor.clear
+            tableView.reloadData()
         }
     }
 
     @objc func userDataDidChange(_ notif: Notification) {
         setupUserInfo()
+    }
+    
+    @objc func channelsLoaded(_ notif: Notification) {
+        print("ChannelVC:ChannelsLoaded:Notification[\(NOTIF_CHANNELS_LOADED)] Table will ReloadData")
+        tableView.reloadData()
     }
 
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -75,9 +89,11 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func addChannelPressed(_ sender: Any) {
-        let addChannel = AddChannelVC()
-        addChannel.modalPresentationStyle = .custom
-        present(addChannel, animated: true, completion: nil)
+        if AuthService.instance.isLoggedIn {
+            let addChannel = AddChannelVC()
+            addChannel.modalPresentationStyle = .custom
+            present(addChannel, animated: true, completion: nil)
+        }
     }
     
     
@@ -90,5 +106,13 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return MessageService.instance.channels.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let channel = MessageService.instance.channels[indexPath.row]
+        MessageService.instance.selectedChannel = channel
+        NotificationCenter.default.post(name: NOTIF_CHANNEL_SELECTED, object: nil)
+        
+        self.revealViewController().revealToggle(animated: true)
+    }
     
 }

@@ -14,6 +14,7 @@ class AddChannelVC: UIViewController {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var nameTxt: UITextField!
     @IBOutlet weak var channelDescription: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()

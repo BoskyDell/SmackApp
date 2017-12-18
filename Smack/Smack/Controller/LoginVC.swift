@@ -51,16 +51,24 @@ class LoginVC: UIViewController {
         guard let email = usernameTxt.text , usernameTxt.text != "" else { return }
         guard let pass = passwordTxt.text , passwordTxt.text != "" else { return }
         
+        print("LoginVC:LoginPressed:AuthService:loginUser: Attempting LoginUser \(email) PWD\(pass)\n")
+        
         AuthService.instance.loginUser(email: email, password: pass) { (success) in
             if success {
+                print("LoginVC:LoginPressed:AuthService:loginUser: Attempting LoginUser \(email) Call FindUserByEmail\n")
                 AuthService.instance.findUserByEmail(completion: { (success) in
                     if success {
+                        print("LoginVC:LoginPressed:AuthService:loginUser: Attempting LoginUser \(email) Success!\n")
                         NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                         self.spinner.isHidden = true
                         self.spinner.stopAnimating()
                         self.dismiss(animated: true, completion: nil)
+                    } else {
+                        print("LoginVC:LoginPressed:AuthService:loginUser: Attempting LoginUser \(email) Failed to find Email\n")
                     }
                 })
+            } else {
+                print("LoginVC:LoginPressed:AuthService:loginUser: Attempting LoginUser \(email) Failed to login\n")
             }
         }
     }

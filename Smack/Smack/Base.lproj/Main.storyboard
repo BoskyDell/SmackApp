@@ -86,6 +86,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="channelNameLbl" destination="45x-pf-5X3" id="Kjc-QT-txJ"/>
                         <outlet property="menuBtn" destination="Xc8-mS-1e6" id="iKT-gV-9tn"/>
                     </connections>
                 </viewController>
