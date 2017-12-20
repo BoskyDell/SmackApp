@@ -15,6 +15,7 @@ class MessageService {
     static let instance = MessageService()
     
     var channels = [Channel]()
+    var messages = [Message]()
     
     var selectedChannel : Channel?
     
@@ -59,7 +60,58 @@ class MessageService {
         }
     }
     
+    func findAllMessagesForChannel(channelId: String, completion: @escaping CompletionHandler) {
+        
+        Alamofire.request("\(URL_GET_MESSAGES)\(channelId)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            
+            print("MessageService:FindAllMessagesForChannels:AlomoFire.request completed\n")
+            if response.result.error == nil {
+                print("MessageService:FindAllMessagesForChannels:AlomoFire.request success\n")
+                self.clearMessages()
+                guard let data = response.data else {
+                    print("MessageService:FindAllMessagesForChannels:AlomoFire.request BUT could not parse response dataq\n")
+                    return
+                }
+                
+                do {
+                    if let json = try JSON(data:data).array {
+                        for item in json {
+                            let messageBody = item["messageBody"].stringValue
+                            let userName    = item["userName"].stringValue
+                            let channelId   = item["channelId"].stringValue
+                            let userAvatar  = item["userAvatar"].stringValue
+                            let userAvatorColor = item["userAvatorColor"].stringValue
+                            let id          = item["_id"].stringValue
+                            let timeStamp   = item["timeStamp"].stringValue
+                            
+                            let message = Message(message: messageBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatorColor: userAvatorColor, id: id, timeStamp: timeStamp)
+                            self.messages.append(message)
+                            print("MessageService:FindAllMessagesForChannels: Messsage ID[\(id)] APPENDED\n")
+                        }
+
+                        completion(true)
+                    }
+                    
+                } catch let error {
+                    print("MessageService:FindAllMessagesForChannels: Messsage failed to read JSON data\n")
+                    completion(false)
+                    debugPrint(error as Any)
+                }
+                
+                completion(true)
+            } else {
+                print("MessageService:FindAllMessagesForChannels:AlomoFire.request FAILED!\n")
+                debugPrint( response.result.error as Any)
+                completion(false)
+            }
+        }
+    }
+    
     func clearChannels() {
         channels.removeAll()
+    }
+    
+    func clearMessages() {
+        messages.removeAll()
     }
 }
