@@ -89,6 +89,7 @@ class MessageService {
                             print("MessageService:FindAllMessagesForChannels: Messsage ID[\(id)] APPENDED\n")
                         }
 
+                        print(self.messages)
                         completion(true)
                     }
                     
@@ -100,8 +101,9 @@ class MessageService {
                 
                 completion(true)
             } else {
-                print("MessageService:FindAllMessagesForChannels:AlomoFire.request FAILED!\n")
-                debugPrint( response.result.error as Any)
+                let errString = response.result.error as Any
+                print("MessageService:FindAllMessagesForChannels:AlomoFire.request FAILED! Error[ \(errString) ] ")
+                debugPrint(response.result.error as Any)
                 completion(false)
             }
         }

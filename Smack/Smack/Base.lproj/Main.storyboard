@@ -73,13 +73,35 @@
                                     <constraint firstItem="45x-pf-5X3" firstAttribute="centerY" secondItem="Xc8-mS-1e6" secondAttribute="centerY" id="msu-Em-1Q8"/>
                                 </constraints>
                             </view>
+                            <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G0y-t2-eNR">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bhL-Al-GJJ"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-d8-EmB">
+                                <rect key="frame" x="329" y="632" width="30" height="30"/>
+                                <state key="normal" image="send"/>
+                                <connections>
+                                    <action selector="sendBtnPressed:" destination="TY3-0F-If8" eventType="touchUpInside" id="idy-nN-ist"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.54380875825881958" green="0.70041185617446899" blue="0.91452056169509888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.35686274509999999" green="0.62352941179999999" blue="0.79607843140000001" alpha="0.51918343321917804" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="leading" secondItem="5bv-Aw-0Bc" secondAttribute="leading" id="0C7-tj-s9C"/>
+                            <constraint firstAttribute="bottom" secondItem="G0y-t2-eNR" secondAttribute="bottom" id="5Se-5Q-qfA"/>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="trailing" secondItem="5bv-Aw-0Bc" secondAttribute="trailing" id="Lny-lb-5V5"/>
+                            <constraint firstItem="5bv-Aw-0Bc" firstAttribute="trailing" secondItem="G0y-t2-eNR" secondAttribute="trailing" id="Qog-Hd-dhn"/>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="top" secondItem="b30-xl-DpL" secondAttribute="top" id="Sg2-Tt-Jng"/>
+                            <constraint firstItem="rlJ-d8-EmB" firstAttribute="centerY" secondItem="G0y-t2-eNR" secondAttribute="centerY" id="lsg-vT-PU6"/>
+                            <constraint firstItem="5bv-Aw-0Bc" firstAttribute="trailing" secondItem="rlJ-d8-EmB" secondAttribute="trailing" constant="16" id="nRE-QM-bF5"/>
+                            <constraint firstItem="G0y-t2-eNR" firstAttribute="leading" secondItem="b30-xl-DpL" secondAttribute="leading" id="sOB-7w-Ngq"/>
+                            <constraint firstAttribute="trailing" secondItem="G0y-t2-eNR" secondAttribute="trailing" id="wTe-VO-OTp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bv-Aw-0Bc"/>
                     </view>
@@ -88,11 +110,12 @@
                     <connections>
                         <outlet property="channelNameLbl" destination="45x-pf-5X3" id="Kjc-QT-txJ"/>
                         <outlet property="menuBtn" destination="Xc8-mS-1e6" id="iKT-gV-9tn"/>
+                        <outlet property="messageTxtBox" destination="G0y-t2-eNR" id="fLj-IS-hce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1lH-66-AfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="262"/>
+            <point key="canvasLocation" x="1192.8" y="261.31934032983509"/>
         </scene>
         <!--ChannelVC-->
         <scene sceneID="C0Q-CN-CMo">
@@ -625,6 +648,7 @@
         <image name="closeButton" width="28" height="28"/>
         <image name="menuProfileIcon" width="99" height="99"/>
         <image name="profileDefault" width="192" height="192"/>
+        <image name="send" width="30" height="30"/>
         <image name="smackBack" width="28" height="28"/>
         <image name="smackBurger" width="40" height="40"/>
         <image name="smackLogo" width="48" height="40"/>

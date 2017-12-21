@@ -13,6 +13,7 @@
 		BA0A60591FCC7D870018B4F1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0A60581FCC7D870018B4F1 /* LoginVC.swift */; };
 		BA327A161FDDE14A00BC2C09 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA327A151FDDE14A00BC2C09 /* ChannelCell.swift */; };
 		BA527FEB1FEACCF500326691 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA527FEA1FEACCF500326691 /* Message.swift */; };
+		BA527FED1FEC2D9100326691 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA527FEC1FEC2D9100326691 /* KeyboardBoundView.swift */; };
 		BA70B6101FDF0E2C0074607B /* AddChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70B60E1FDF0E2C0074607B /* AddChannelVC.swift */; };
 		BA70B6111FDF0E2C0074607B /* AddChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA70B60F1FDF0E2C0074607B /* AddChannelVC.xib */; };
 		BA70B6131FE088630074607B /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70B6121FE088630074607B /* SocketService.swift */; };
@@ -44,6 +45,7 @@
 		BA0A60581FCC7D870018B4F1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		BA327A151FDDE14A00BC2C09 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		BA527FEA1FEACCF500326691 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		BA527FEC1FEC2D9100326691 /* KeyboardBoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardBoundView.swift; sourceTree = "<group>"; };
 		BA70B60E1FDF0E2C0074607B /* AddChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelVC.swift; sourceTree = "<group>"; };
 		BA70B60F1FDF0E2C0074607B /* AddChannelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelVC.xib; sourceTree = "<group>"; };
 		BA70B6121FE088630074607B /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		BA942CDD1FC87F1C00EC7B97 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA527FEC1FEC2D9100326691 /* KeyboardBoundView.swift */,
 				BA0A60531FCC60600018B4F1 /* GradientView.swift */,
 				BA880C1E1FD5AA0100669BF6 /* RoundedButton.swift */,
 				BA880C241FD8630700669BF6 /* AvatarCell.swift */,
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA527FED1FEC2D9100326691 /* KeyboardBoundView.swift in Sources */,
 				BA70B6131FE088630074607B /* SocketService.swift in Sources */,
 				BA942CE21FC87F6C00EC7B97 /* ChannelVC.swift in Sources */,
 				BA327A161FDDE14A00BC2C09 /* ChannelCell.swift in Sources */,
