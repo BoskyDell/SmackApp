@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatVC: UIViewController {
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // Outlet
     
@@ -17,12 +17,20 @@ class ChatVC: UIViewController {
     @IBOutlet weak var channelNameLbl: UILabel!
     
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTxtBox: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.bindToKeyboard()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
+                
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap))
         view.addGestureRecognizer(tap)
         
@@ -54,7 +62,7 @@ class ChatVC: UIViewController {
     
     @objc func userDataDidChange(_ notif: Notification) {
         if AuthService.instance.isLoggedIn {
-            // get channels
+            print("ChatVC:userDataDidCHange:IsLoggedIn:CallonLoginGetMessages")
             onLoginGetMessages()
         } else {
             channelNameLbl.text = "Please Log In"
@@ -110,7 +118,11 @@ class ChatVC: UIViewController {
         }
         
         MessageService.instance.findAllMessagesForChannel(channelId: channelId) { (success) in
-            
+            if success {
+                self.tableView.reloadData()
+            } else {
+                print("ChatVC:GetMessages: Could not find all Messages for Channel \(channelId)")
+            }
         }
     }
     
@@ -119,7 +131,24 @@ class ChatVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell {
+            let message = MessageService.instance.messages[indexPath.row]
+            cell.configureCell(message: message)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+        
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MessageService.instance.messages.count
+    }
 
 }
