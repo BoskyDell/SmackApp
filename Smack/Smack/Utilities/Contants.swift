@@ -28,6 +28,12 @@ let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataChanged")
 let NOTIF_CHANNELS_LOADED = Notification.Name("channelsLoaded")
 let NOTIF_CHANNEL_SELECTED = Notification.Name("channelSelected")
 
+// MessageEnums
+
+enum MessageComponentsEnum {
+    case msgBodyEnm, notUsedEnm, chanIDEnm, userNameEnm, avatarEnm, avatarColorEnm, idEnm, timeStampEnm
+}
+
 
 
 // Seques
