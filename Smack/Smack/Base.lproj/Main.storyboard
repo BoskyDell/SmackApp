@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
         <array key="AvenirNext.ttc">
             <string>AvenirNext-Heavy</string>
             <string>AvenirNext-Regular</string>
@@ -156,6 +159,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eoc-zS-vLw">
+                                <rect key="frame" x="8" y="587" width="359" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="wH8-96-i5y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.54380875825881958" green="0.70041185617446899" blue="0.91452056169509888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.35686274509999999" green="0.62352941179999999" blue="0.79607843140000001" alpha="0.51918343321917804" colorSpace="custom" customColorSpace="sRGB"/>
@@ -163,7 +175,9 @@
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="leading" secondItem="5bv-Aw-0Bc" secondAttribute="leading" id="0C7-tj-s9C"/>
                             <constraint firstItem="5bv-Aw-0Bc" firstAttribute="bottom" secondItem="GMA-Q3-Ipv" secondAttribute="bottom" constant="35" id="1eG-dx-YKG"/>
                             <constraint firstAttribute="bottom" secondItem="G0y-t2-eNR" secondAttribute="bottom" id="5Se-5Q-qfA"/>
+                            <constraint firstItem="5bv-Aw-0Bc" firstAttribute="trailing" secondItem="Eoc-zS-vLw" secondAttribute="trailing" constant="8" id="7tG-E0-5Bd"/>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="trailing" secondItem="5bv-Aw-0Bc" secondAttribute="trailing" id="Lny-lb-5V5"/>
+                            <constraint firstItem="Eoc-zS-vLw" firstAttribute="leading" secondItem="5bv-Aw-0Bc" secondAttribute="leading" constant="8" id="NIw-j1-qkI"/>
                             <constraint firstItem="5bv-Aw-0Bc" firstAttribute="trailing" secondItem="G0y-t2-eNR" secondAttribute="trailing" id="Qog-Hd-dhn"/>
                             <constraint firstItem="GMA-Q3-Ipv" firstAttribute="top" secondItem="g4K-4X-kPC" secondAttribute="bottom" id="Qp1-bb-prZ"/>
                             <constraint firstItem="g4K-4X-kPC" firstAttribute="top" secondItem="b30-xl-DpL" secondAttribute="top" id="Sg2-Tt-Jng"/>
@@ -173,6 +187,7 @@
                             <constraint firstItem="5bv-Aw-0Bc" firstAttribute="trailing" secondItem="rlJ-d8-EmB" secondAttribute="trailing" constant="16" id="nRE-QM-bF5"/>
                             <constraint firstItem="G0y-t2-eNR" firstAttribute="leading" secondItem="b30-xl-DpL" secondAttribute="leading" id="sOB-7w-Ngq"/>
                             <constraint firstAttribute="trailing" secondItem="G0y-t2-eNR" secondAttribute="trailing" id="wTe-VO-OTp"/>
+                            <constraint firstAttribute="bottom" secondItem="Eoc-zS-vLw" secondAttribute="bottom" constant="50" id="ycE-m8-8ph"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5bv-Aw-0Bc"/>
                     </view>
@@ -184,6 +199,7 @@
                         <outlet property="messageTxtBox" destination="G0y-t2-eNR" id="fLj-IS-hce"/>
                         <outlet property="sendBtn" destination="rlJ-d8-EmB" id="EY1-h2-ycH"/>
                         <outlet property="tableView" destination="GMA-Q3-Ipv" id="ZS5-F8-8ln"/>
+                        <outlet property="typingUsersLbl" destination="Eoc-zS-vLw" id="ebY-F4-bTu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1lH-66-AfU" userLabel="First Responder" sceneMemberID="firstResponder"/>
