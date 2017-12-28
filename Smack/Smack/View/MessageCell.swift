@@ -17,11 +17,9 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var userImg: CircleImage!
     
     @IBOutlet weak var messageBodyLbl: UILabel!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     func configureCell(message: Message) {
@@ -29,9 +27,5 @@ class MessageCell: UITableViewCell {
         userNameLbl.text = message.userName
         userImg.image = UIImage(named: message.userAvatar)
         userImg.backgroundColor = UserDataService.instance.returnUIColor(components: message.userAvatorColor)
-
     }
-        
-
-
 }

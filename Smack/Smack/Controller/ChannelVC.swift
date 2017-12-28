@@ -9,12 +9,13 @@
 import UIKit
 
 class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-// Outlets
+
+    // Outlets
+    
     @IBOutlet weak var userImg: CircleImage!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
-    
     override func viewDidLoad() {
         print("ChannelVC:ViewDidLoad: Entered")
         super.viewDidLoad()
@@ -41,7 +42,6 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.tableView.reloadData()
             }
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,8 +104,6 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -130,5 +128,4 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.revealViewController().revealToggle(animated: true)
     }
-    
 }

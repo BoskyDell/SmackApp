@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Regular</string>
+        </array>
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
@@ -19,6 +22,7 @@
             <connections>
                 <outlet property="bgView" destination="iDP-8l-oF0" id="gAx-SH-NpG"/>
                 <outlet property="profileImg" destination="PV6-mi-DQv" id="cLP-wW-YsP"/>
+                <outlet property="updateProfileBtn" destination="GUo-Qg-aa9" id="qdb-p7-0Zh"/>
                 <outlet property="userEmail" destination="fRe-Ps-Jfv" id="e5z-U0-dTQ"/>
                 <outlet property="userName" destination="cfg-8I-I4M" id="D8t-EY-9sV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -89,9 +93,22 @@
                                 <action selector="closeModalPressed:" destination="-1" eventType="touchUpInside" id="CCV-qN-X2J"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GUo-Qg-aa9">
+                            <rect key="frame" x="117" y="298" width="100" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="DhB-VQ-EK7"/>
+                                <constraint firstAttribute="width" constant="100" id="M9S-qc-WHA"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                            <state key="normal" title="Update Name"/>
+                            <connections>
+                                <action selector="updateProfilePressed:" destination="-1" eventType="touchUpInside" id="Hol-Dh-1ay"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="axB-TO-cZn" firstAttribute="top" secondItem="GUo-Qg-aa9" secondAttribute="bottom" constant="5" id="0W7-Nr-bxP"/>
                         <constraint firstItem="zi3-JK-rPf" firstAttribute="leading" secondItem="hhz-4e-qaU" secondAttribute="leading" constant="20" id="1GO-Zw-EvQ"/>
                         <constraint firstItem="zi3-JK-rPf" firstAttribute="centerX" secondItem="Lgr-ck-lFH" secondAttribute="centerX" id="8ob-D1-bhd"/>
                         <constraint firstItem="TNR-Kb-im8" firstAttribute="top" secondItem="hhz-4e-qaU" secondAttribute="top" constant="8" id="DyR-56-27N"/>
@@ -100,6 +117,7 @@
                         <constraint firstItem="hhz-4e-qaU" firstAttribute="bottom" secondItem="axB-TO-cZn" secondAttribute="bottom" constant="8" id="Qx6-US-u7D"/>
                         <constraint firstItem="zi3-JK-rPf" firstAttribute="centerY" secondItem="Lgr-ck-lFH" secondAttribute="centerY" constant="-20" id="jk4-zJ-Ymb"/>
                         <constraint firstItem="hhz-4e-qaU" firstAttribute="trailing" secondItem="zi3-JK-rPf" secondAttribute="trailing" constant="20" id="ot8-5j-sbm"/>
+                        <constraint firstItem="GUo-Qg-aa9" firstAttribute="centerX" secondItem="Lgr-ck-lFH" secondAttribute="centerX" id="pL7-wG-JhJ"/>
                         <constraint firstItem="axB-TO-cZn" firstAttribute="centerX" secondItem="Lgr-ck-lFH" secondAttribute="centerX" id="tGz-dQ-agm"/>
                         <constraint firstItem="hhz-4e-qaU" firstAttribute="trailing" secondItem="TNR-Kb-im8" secondAttribute="trailing" constant="8" id="xJx-cd-Jgq"/>
                     </constraints>

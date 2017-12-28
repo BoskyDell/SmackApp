@@ -28,6 +28,14 @@ class UserDataService {
         self.avatarColor = color
     }
     
+    func updateUserData(color: String, avatarName: String, email: String, name: String)  {
+        self.email = email
+        self.name  = name
+        
+        self.avatarName  = avatarName
+        self.avatarColor = color
+    }
+    
     func returnUIColor (components: String) -> UIColor {
                 
         let scanner = Scanner(string: components)
@@ -76,5 +84,4 @@ class UserDataService {
         MessageService.instance.clearChannels()
         MessageService.instance.clearMessages()
     }
-    
 }

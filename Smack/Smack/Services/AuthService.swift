@@ -49,6 +49,15 @@ class AuthService {
         }
     }
     
+    var userId: String {
+        get {
+            return defaults.value(forKey: USER_EMAIL) as! String
+        }
+        
+        set {
+            defaults.set(newValue, forKey: USER_EMAIL)
+        }
+    }
     func registerUser (email: String, password: String, completion: @escaping CompletionHandler ) {
         
         let lowerCaseEmail = email.lowercased()
@@ -73,7 +82,34 @@ class AuthService {
         
     }
     
-    
+    // AuthService.instance.updateUser(email: email, password: pass, name: newName) { (success) in
+    func updateUser (email: String, id: String, name: String, completion: @escaping CompletionHandler ) {
+        
+        let lowerCaseEmail = email.lowercased()
+        
+        let body: [String: Any] = [
+            "name": name,
+        ]
+  
+        let userById = "\(URL_USER_BY_ID)\(id)"
+        
+        print(" ========================= \nAuthServiceUpdateUser Entered \n ================================== \n")
+            
+        Alamofire.request(userById, method: .put, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+            if response.result.error == nil {
+                completion(true)
+                print("AuthService:UpdateUser:Alamofire: New Name \(name) URL[\(userById)] \n")
+            } else {
+                completion(false)
+                print("FAILED AuthService:UpdateUser:Alamofire: Registered User \(lowerCaseEmail)  URL[\(userById)] \n")
+                debugPrint(response.result.error as Any)
+            }
+        }
+    }
+        
+        
+        
+        
     func loginUser ( email: String, password: String, completion: @escaping CompletionHandler ) {
         
         let lowerCaseEmail = email.lowercased()
@@ -82,23 +118,12 @@ class AuthService {
             "email": lowerCaseEmail,
             "password": password
         ]
-    
+        
         print("START AuthService:LoginUser:Alamofire: login User \(lowerCaseEmail) LoginURL \(URL_LOGIN) Header\(HEADER) \n")
         
         Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
-                
-                // Original JSON Parsing
-//                if let json = response.result.value as? Dictionary<String, Any> {
-//                    if let email = json["user" ] as? String {
-//                        self.userEmail = email
-//                    }
-//                    if let token = json["token"] as? String {
-//                        self.authToken = token
-//                    }
-//                }
-                
 
                 // Swifty JSON method
                 guard let data = response.data else {

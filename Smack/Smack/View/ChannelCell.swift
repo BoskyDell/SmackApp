@@ -41,7 +41,5 @@ class ChannelCell: UITableViewCell {
                 channelName.font = UIFont(name: "AvenirNew-Heavy", size: 24)
             }
         }
-        
     }
-
 }

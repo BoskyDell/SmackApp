@@ -72,15 +72,6 @@ class SocketService: NSObject {
             MessageService.instance.messages.append(newMessage)
             
             completion(newMessage)
-            
-//            if channelId == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn {
-//                let newMessage = Message(message: msbBody, userName: userName, channelId: channelId, userAvatar: userAvatar, userAvatorColor: userAvatarColor, id: id, timeStamp: timeStamp)
-//                MessageService.instance.messages.append(newMessage)
-//                completion(true)
-//            } else {
-//                completion(false)
-//            }
-            
         }
     }
     
@@ -89,8 +80,5 @@ class SocketService: NSObject {
             guard let typingUsers = dataArray[0] as? [String: String] else { return }
             completionHandler(typingUsers)
         }
-    }
-    
-    
-    
+    }   
 }

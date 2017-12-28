@@ -55,5 +55,4 @@ class AddChannelVC: UIViewController {
     @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)
     }
-
 }

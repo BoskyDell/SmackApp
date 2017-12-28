@@ -10,10 +10,13 @@ import UIKit
 
 class AvatarPickerVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    // Outlets
+    
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // variables
+    
     var avatarType = AvatarType.dark
     
     override func viewDidLoad() {
@@ -43,8 +46,6 @@ class AvatarPickerVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBAction func backBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    // Start at the 9 minute mark  of Lecture 77
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

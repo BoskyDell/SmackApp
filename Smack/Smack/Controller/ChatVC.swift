@@ -14,14 +14,13 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var channelNameLbl: UILabel!
-    
     @IBOutlet weak var sendBtn: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTxtBox: UITextField!
-    
     @IBOutlet weak var typingUsersLbl: UILabel!
-    // variables
+    
+    // Variables
+    
     var isTyping = false
     
     override func viewDidLoad() {
@@ -60,16 +59,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-//        SocketService.instance.getChatMessage { (success) in
-//            if success {
-//                self.tableView.reloadData()
-//                if MessageService.instance.messages.count > 0 {
-//                    let endIndex = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
-//                    self.tableView.scrollToRow(at: endIndex, at: .bottom, animated: false)
-//                }
-//            }
-//        }
-        
         SocketService.instance.getTypingUsers { (typingUsers) in
             guard let channelId = MessageService.instance.selectedChannel?.id else { return }
             var names = ""
@@ -102,9 +91,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
             })
         }
-        
-        // MessageService.instance.findAllChannels { (success) in  }
-        
     }
 
     @objc func handleTap() {
@@ -132,7 +118,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         getMessages()
     }
     
-    
     @IBAction func messageBoxEditing(_ sender: Any) {
         guard let channelId = MessageService.instance.selectedChannel?.id else { return }
         if messageTxtBox.text == "" {
@@ -147,7 +132,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             isTyping = true
         }
     }
-    
     
     @IBAction func sendBtnPressed(_ sender: Any) {
         if AuthService.instance.isLoggedIn {
@@ -166,7 +150,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             })
         }
     }
-    
     
     func onLoginGetMessages() {
         MessageService.instance.findAllChannels { (success) in
@@ -198,7 +181,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -209,8 +191,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             return UITableViewCell()
         }
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -220,5 +200,4 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MessageService.instance.messages.count
     }
-
 }

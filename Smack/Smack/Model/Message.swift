@@ -16,5 +16,4 @@ struct Message {
     public private(set) var userAvatorColor: String!
     public private(set) var id: String!
     public private(set) var timeStamp: String!
-    
 }
